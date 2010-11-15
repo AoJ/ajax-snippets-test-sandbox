@@ -1,0 +1,109 @@
+{**
+ * My Application layout template.
+ *
+ * @copyright  Copyright (c) 2010 John Doe
+ * @package    MyApplication
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optinal)
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta name="description" content="Nette Framework web application skeleton">
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+
+	<title>Nette Application Skeleton</title>
+
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css" type="text/css">
+	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css" type="text/css">
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/nette-ajax.js"></script>
+
+	<style type="text/css">
+		body { font-size: small; }
+		.snippet { 
+			border: 1px solid orange;
+			outline: 3px solid #ffea00;
+		}
+		.widget { border: 2px dotted blue; }
+		.presenter { border: 2px dotted yellowgreen; }
+		h2 { margin: 0; }
+		h3 { margin: 0; padding: 0; color: #aaa; font-weight: normal; }
+		.presenter h2 { color: yellowgreen; }
+		.widget h2 { color: blue; }
+		div { padding: 10px; }
+		span { padding: 0 10px; }
+		form { margin: 0; padding: 0; }
+	</style>
+
+</head>
+
+<body>
+	<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+
+	<div>
+		<h1>Nette Framework AJAX & Snippets Testing Sandbox</h1>
+		Legend:
+		<span class="presenter">Presenter</span>
+		<span class="widget">Control</span>
+		<span class="snippet">Snippet</span>
+	</div>
+
+	{include #content}
+
+	<script type="text/javascript">
+	/* <![CDATA[ */
+
+	$(function () {
+
+		// Ajax links
+		$("a.ajax").live("click", function (event) {
+			event.preventDefault();
+			$.get(this.href);
+		});
+
+		// Ajax forms
+		$("form.ajax").live("submit", function (event) {
+			event.preventDefault();
+			$(this).ajaxSubmit();
+			return false;
+		});
+
+		// Ajax submit buttons
+		$("form.ajax :submit").live("click", function (event) {
+			event.preventDefault();
+			$(this).ajaxSubmit();
+			return false;
+		});
+
+	});
+
+	/* ]]> */
+	</script>
+
+
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-19708442-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+
+
+</body>
+</html>

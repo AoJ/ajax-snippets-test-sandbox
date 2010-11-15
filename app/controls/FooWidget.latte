@@ -1,0 +1,19 @@
+<div class="widget">
+
+	<h2>Control: {$control->name}</h2>
+
+	<h3>Links</h3>
+	<div>
+		<a class="ajax" n:href="refresh"><b>Refresh me</b></a>
+	</div>
+
+	<h3>Forms</h3>
+	{control form}
+
+	<h3>Snippet</h3>
+	<div n:snippet="example" class="snippet">
+		{=microtime(true)}
+		{if $control->nested}{control nested}{/if}
+	</div>
+
+</div>

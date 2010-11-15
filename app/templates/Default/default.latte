@@ -1,0 +1,54 @@
+{block content}
+
+	<div class="presenter">
+
+		<div style="float: left; width: 30%;">
+
+			<h2>Presenter: {$control->name}</h2>
+
+			<h3>Links</h3>
+			<div>
+				<a n:class="ajax" n:href="refresh!"><b>Refresh all snippets</b></a> |
+				<a n:class="ajax" n:href="refreshX!"><b>Refresh snippet X</b></a> |
+				<a n:class="ajax" n:href="refreshY!"><b>Refresh snippet Y</b></a> |
+				<a n:class="ajax" n:href="refreshCom!"><b>Refresh all controls</b></a> |
+				<a n:class="ajax" href="{$control['a']->link('refresh')}">Refresh control A</a> |
+				<a n:class="ajax" href="{$control['b']->link('refresh')}">Refresh control B</a>
+			</div>
+
+			<h3>Forms</h3>
+			{control form}
+
+			<h3>Snippet X:</h3>
+			<div n:snippet="example" class="snippet">
+				{=microtime(true)}<br>
+				{control a}
+			</div>
+
+		</div>
+		
+		<div style="float: left; width: 30%;">
+
+			{control b}
+
+		</div>
+		
+		<div style="float: left; width: 30%;">
+
+			<h3>Snippet Y:</h3>
+			
+			<div n:snippet="dynamic" class="snippet">
+				{=microtime(true)}<br>
+				{control dyna1}
+				{control dyna2}
+				{control dyna3}
+				{control dyna4}
+				{control dyna5}
+			</div>
+		</div>
+
+		<div style="clear: both;"></div>
+
+	</div>
+
+{/block}
